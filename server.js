@@ -32,6 +32,10 @@ app.get('/history', (req, res) => {
   res.show('history.html');
 });
 
+app.get('/hello/:name', (req, res) => {
+  res.send(`Hello ${req.params.id}`);
+})
+
 // app.get('/style.css', (req, res) => {
 //     res.sendFile(path.join(__dirname, '/style.css'));
 // });
