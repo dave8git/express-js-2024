@@ -37,6 +37,10 @@ app.get('/history', (req, res) => {
   res.render('history');
 });
 
+app.post('/contact/send-message', (req, res) => {
+  res.json(req.body); // res.json method return data in json format (unlike for ex. res.send which returns data in text format)
+});
+
 app.get('/hello/:name', (req, res) => {
   //res.send(`Hello ${req.params.id}`);
   res.render('hello', {layout: false, name: req.params.name });
