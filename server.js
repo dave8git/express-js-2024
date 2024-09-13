@@ -13,26 +13,28 @@ app.set('view engine', '.hbs'); // all our views will be using .hbs extension
 //     next(); 
 // });
 
+//app.engine('hbs', hbs({ extname: 'hbs', layoutsDir: './layouts', defaultLayout: 'main' })); --> that line configures hbs to look for main.handlebars layout in /layouts folder instead of /views/layouts as is by default
+
 app.use(express.static(path.join(__dirname, '/public')));
 
 app.get('/', (req, res) => {
-    res.render('index', { layout: false }); // zanim odpowie co jest pod '/' użyje metody show 
+    res.render('index'); // zanim odpowie co jest pod '/' użyje metody show 
 });
 
 app.get('/about', (req, res) => {
-  res.render('about', { layout: false });
+  res.render('about');
 });
 
 app.get('/contact', (req, res) => {
-  res.render('contact', { layout: false });
+  res.render('contact');
 });
 
 app.get('/info', (req, res) => {
-  res.render('info', { layout: false });
+  res.render('info');
 });
 
 app.get('/history', (req, res) => {
-  res.render('history', { layout: false });
+  res.render('history');
 });
 
 app.get('/hello/:name', (req, res) => {
