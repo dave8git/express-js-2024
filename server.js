@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const hbs = require('express-handlebars');
+const multer = require('multer');
 const app = express();
 
 app.engine('.hbs', hbs()); // all files with .hbs extension should be rendered by handlebars engine
@@ -16,6 +17,8 @@ app.set('view engine', '.hbs'); // all our views will be using .hbs extension
 //app.engine('hbs', hbs({ extname: 'hbs', layoutsDir: './layouts', defaultLayout: 'main' })); --> that line configures hbs to look for main.handlebars layout in /layouts folder instead of /views/layouts as is by default
 
 app.use(express.static(path.join(__dirname, '/public')));
+
+app.use(express.urlencoded({ extended: false }));
 
 app.get('/', (req, res) => {
     res.render('index'); // zanim odpowie co jest pod '/' użyje metody show 
@@ -38,7 +41,15 @@ app.get('/history', (req, res) => {
 });
 
 app.post('/contact/send-message', (req, res) => {
-  res.json(req.body); // res.json method return data in json format (unlike for ex. res.send which returns data in text format)
+  const { author, sender, title, message } = req.body; 
+
+  if(author && sender && title && message) {
+    res.render('contact', { isSent: true }); 
+  }
+  else {
+    res.render('contact', { isError: true });
+    //res.json(req.body); // res.json method return data in json format (unlike for ex. res.send which returns data in text format)
+  }
 });
 
 app.get('/hello/:name', (req, res) => {
