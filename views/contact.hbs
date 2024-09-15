@@ -1,5 +1,5 @@
 <h2>Contact me</h2>
-<form action="/contact/send-message" method="POST">
+<form action="/contact/send-message" method="POST" enctype="multipart/form-data">
   <label>
     Your name: <input type="text" name="author">
   </label>
@@ -11,6 +11,9 @@
   </label>
   <label>
     Message: <textarea name="message"></textarea>
+  </label>
+  <label>
+    Attach a file: <input type="file" name="myImage">
   </label>
   <button type="submit">Send message</button>
 </form>
